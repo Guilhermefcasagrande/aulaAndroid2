@@ -1,6 +1,7 @@
 package unidavi.edu.br.todolist;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "tasks")
@@ -12,6 +13,7 @@ public class Task {
     private final String title;
     private final boolean done;
 
+    @Ignore
     public Task(String title, boolean done) {
         this.id = null;
         this.title = title;
@@ -25,5 +27,15 @@ public class Task {
     }
 
 
+    public Integer getId() {
+        return id;
+    }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
 }

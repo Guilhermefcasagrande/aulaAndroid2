@@ -14,9 +14,9 @@ public class TaskDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
-        helper = new DatabaseHelper(this);
 
-        task = getIntent().getParcelableExtra("task");
+        int id = getIntent().getIntExtra("id", 0);
+        task = TasksStore.getInstance(this).getTasksDao().findById(id);
         setTitle(task.getTitle());
 
         //Exclui a tarefa
@@ -24,7 +24,9 @@ public class TaskDetailActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                helper.deleteTask(task);
+                TasksStore.getInstance(getApplicationContext())
+                        .getTasksDao()
+                        .delete(task);
                 finish();
             }
         });
@@ -34,7 +36,9 @@ public class TaskDetailActivity extends AppCompatActivity {
         buttonDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                helper.markTaskAsDone(task);
+                TasksStore.getInstance(getApplicationContext())
+                        .getTasksDao()
+                        .update(new Task(task.getId(), task.getTitle(), true));
                 finish();
             }
         });

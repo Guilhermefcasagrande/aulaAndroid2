@@ -16,18 +16,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(Task task) {
             Intent intent = new Intent(getApplicationContext(), TaskDetailActivity.class);
-            intent.putExtra("task", task);
+            intent.putExtra("id", task.getId());
             startActivity(intent);
         }
     });
-    private DatabaseHelper helper;
+//    private DatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        helper = new DatabaseHelper(this);
+//        helper = new DatabaseHelper(this);
 
         RecyclerView tasklist = findViewById(R.id.task_list);
         tasklist.setLayoutManager(new LinearLayoutManager(this));
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        List<Task> tasks = helper.fetchTasks();
+        List<Task> tasks = TasksStore.getInstance(this).getTasksDao().fetcTasks();
         adapter.setUp(tasks);
     }
 }
