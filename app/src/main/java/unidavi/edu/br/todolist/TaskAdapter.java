@@ -25,7 +25,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         return new ViewHolder(inflater.inflate(
-                android.R.layout.simple_list_item_1,
+                android.R.layout.simple_list_item_2,
                 parent,
                 false
         ));
@@ -35,6 +35,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Task task = tasks.get(i);
         viewHolder.title.setText(tasks.get(i).getTitle());
+        viewHolder.data.setText(tasks.get(i).getData());
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,10 +65,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
+        TextView data;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(android.R.id.text1);
+            data = itemView.findViewById(android.R.id.text2);
         }
     }
 

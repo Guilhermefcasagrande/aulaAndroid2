@@ -13,17 +13,22 @@ public class Task {
     private final String title;
     private final boolean done;
 
+    private final String data;
+
+
     @Ignore
-    public Task(String title, boolean done) {
+    public Task(String title, boolean done, String data) {
         this.id = null;
         this.title = title;
         this.done = done;
+        this.data = data;
     }
 
-    public Task(Integer id, String title, boolean done) {
+    public Task(Integer id, String title, boolean done, String data) {
         this.id = id;
         this.title = title;
         this.done = done;
+        this.data = data;
     }
 
 
@@ -37,5 +42,9 @@ public class Task {
 
     public boolean isDone() {
         return done;
+    }
+
+    public String getData() {
+        return data;
     }
 }

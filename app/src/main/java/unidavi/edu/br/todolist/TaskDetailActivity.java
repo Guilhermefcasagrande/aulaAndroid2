@@ -38,7 +38,7 @@ public class TaskDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 TasksStore.getInstance(getApplicationContext())
                         .getTasksDao()
-                        .update(new Task(task.getId(), task.getTitle(), true));
+                        .update(new Task(task.getId(), task.getTitle(), true, task.getData()));
                 finish();
             }
         });

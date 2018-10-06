@@ -44,21 +44,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Task> fetchTasks(){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query("tasks", new String[]{
-                "_id", "title", "done"
+                "_id", "title", "data", "done"
         }, null, null, null, null, null);
 
         List<Task> tasks = new ArrayList<>();
 
         cursor.moveToFirst();
-        while (!cursor.isAfterLast()){
-            Task task = new Task(
-                    cursor.getInt(cursor.getColumnIndex("_id")),
-                    cursor.getString(cursor.getColumnIndex("title")),
-                    cursor.getInt(cursor.getColumnIndex("done")) == 1
-            );
-            tasks.add(task);
-            cursor.moveToNext();
-        }
+//        while (!cursor.isAfterLast()){
+//            Task task = new Task(
+//                    cursor.getInt(cursor.getColumnIndex("_id")),
+//                    cursor.getString(cursor.getColumnIndex("title")),
+//                    cursor.getString(cursor.getColumnIndex("data")),
+//                    cursor.getInt(cursor.getColumnIndex("done")) == 1
+//            );
+//            tasks.add(task);
+//            cursor.moveToNext();
+//        }
 
         cursor.close();
         return tasks;

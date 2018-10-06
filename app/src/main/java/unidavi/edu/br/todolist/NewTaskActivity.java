@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NewTaskActivity extends AppCompatActivity {
 
 
@@ -23,9 +26,13 @@ public class NewTaskActivity extends AppCompatActivity {
                 EditText inputNewTask = findViewById(R.id.input_new_task);
                 String value = inputNewTask.getText().toString();
 
+                String pattern = "dd/MM/yyyy, hh:mm";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                String data = simpleDateFormat.format(new Date());
+
                 if(!value.isEmpty()){
                     TasksStore.getInstance(getApplicationContext())
-                            .getTasksDao().insert(new Task(value, false));
+                            .getTasksDao().insert(new Task(value, false, data));
                     finish();
                 }
             }
