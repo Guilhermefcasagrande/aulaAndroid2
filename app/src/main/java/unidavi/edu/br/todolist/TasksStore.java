@@ -13,7 +13,9 @@ public abstract class TasksStore extends RoomDatabase{
 
     public static TasksStore getInstance(Context context){
         if(instance == null){
-            instance = Room.databaseBuilder(context, TasksStore.class, "tasks.db").build();
+            instance = Room.databaseBuilder(context, TasksStore.class, "tasks.db")
+                    .allowMainThreadQueries()
+                    .build();
         }
         return instance;
     }
