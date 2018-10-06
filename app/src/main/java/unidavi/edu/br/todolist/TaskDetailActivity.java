@@ -19,11 +19,22 @@ public class TaskDetailActivity extends AppCompatActivity {
         task = getIntent().getParcelableExtra("task");
         setTitle(task.getTitle());
 
+        //Exclui a tarefa
         Button buttonDelete = findViewById(R.id.button_delete);
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 helper.deleteTask(task);
+                finish();
+            }
+        });
+
+        //Marca tarefa como concluída
+        Button buttonDone = findViewById(R.id.button_done);
+        buttonDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                helper.markTaskAsDone(task);
                 finish();
             }
         });

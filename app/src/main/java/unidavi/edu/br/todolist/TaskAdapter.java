@@ -1,5 +1,6 @@
 package unidavi.edu.br.todolist;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,6 +41,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 listener.onClick(task);
             }
         });
+        if(task.isDone()){
+            viewHolder.title.setTextColor(Color.RED);
+        } else {
+            viewHolder.title.setTextColor(Color.BLACK);
+        }
     }
 
 
